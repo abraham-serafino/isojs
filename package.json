@@ -1,0 +1,38 @@
+{
+  "name": "isojs",
+  "version": "1.0.0",
+  "description": "Isomorphic ES6 build & package management with auto-refresh",
+  "main": "server.js",
+  "author": "Abraham Serafino",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "express": "^4.15.3",
+    "express-browserify": "^1.0.2",
+    "lodash.reverse": "^4.0.1",
+    "moment": "^2.18.1",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "socket.io-frontend": "^0.0.2"
+  },
+  "babel": {
+    "presets": [
+      "es2017",
+      "stage-0",
+      "react"
+    ]
+  },
+  "scripts": {
+    "build": "babel . --extensions .es6 --source-maps inline --out-dir . --exclude node_modules",
+    "build:watch": "babel . --extensions .es6 --minified --out-dir . --exclude node_modules --watch --skip-initial-build",
+    "start": "node index",
+    "start:watch": "concurrently 'nodemon -e js,html,css' 'npm run build:watch'",
+    "dev": "npm-run-all 'build' 'start:watch'"
+  }
+}
