@@ -1,8 +1,11 @@
-const express = require('express');
+import express from 'express';
+import http from 'http';
+import socket from 'socket.io';
+import browserify from 'express-browserify';
+
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-const browserify = require('express-browserify');
+const server = http.createServer(app);
+const io = socket(server);
 
 io.on('connection', () => {
   console.log('a user connected');

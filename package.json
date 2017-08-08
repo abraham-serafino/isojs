@@ -7,6 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-uglify": "^1.0.2",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -26,13 +28,17 @@
       "es2017",
       "stage-0",
       "react"
+    ],
+    "plugins": [
+      "transform-es2015-modules-commonjs"
     ]
   },
   "scripts": {
-    "build": "babel . --extensions .es6 --source-maps inline --out-dir . --exclude node_modules",
-    "build:watch": "babel . --extensions .es6 --minified --out-dir . --exclude node_modules --watch --skip-initial-build",
-    "start": "node index",
+    "build": "babel . --extensions .es6 --minified --source-maps inline --out-dir . --exclude node_modules",
+    "build:dev": "babel . --extensions .es6 --out-dir . --exclude node_modules",
+    "build:watch": "babel . --extensions .es6 --out-dir . --exclude node_modules --watch --skip-initial-build",
+    "start": "node server",
     "start:watch": "concurrently 'nodemon -e js,html,css' 'npm run build:watch'",
-    "dev": "npm-run-all 'build' 'start:watch'"
+    "dev": "npm-run-all 'build:dev' 'start:watch'"
   }
 }
